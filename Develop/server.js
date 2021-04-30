@@ -1,8 +1,12 @@
 // Dependencies
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-const db = require('./db/db.json')
+const db = require('./db/db.json');
+const uniqid = require('uniqid');
+
+//const uniqid = require('uniqid');
 
 // Sets up the Express App
 
@@ -11,58 +15,33 @@ const PORT = 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"))
 app.use(express.json());
 
-// Star Wars Characters (DATA)
-
-const characters = [
-  {
-    routeName: 'yoda',
-    name: 'Yoda',
-    role: 'Jedi Master',
-    age: 900,
-    forcePoints: 2000,
-  },
-  {
-    routeName: 'darthmaul',
-    name: 'Darth Maul',
-    role: 'Sith Lord',
-    age: 200,
-    forcePoints: 1200,
-  },
-  {
-    routeName: 'obiwankenobi',
-    name: 'Obi Wan Kenobi',
-    role: 'Jedi Master',
-    age: 55,
-    forcePoints: 1350,
-  },
-];
 
 // Routes
 
-// Basic route that sends the user first to the AJAX Page
+// Route that sends the user to local route, saved route(notes) and the db.json file
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));
 
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html')));
 
-// Displays all characters
 app.get('/api/notes', (req, res) => res.json(db));
 
 
-// Create New Characters - takes in JSON input
+// Sets the post API route - takes in JSON input
 app.post('/api/notes', (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   const newNote = req.body;
+    
+   newNote.id = uniqid();
+   db.push(newNote)
+  
+  fs.writeFile('./db/db.json', JSON.stringify(db), err => 
+        err ? console.log(err) : console.log('Generating ReadMe!'));
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-//   newCharacter.routeName = newCharacter.name.replace(/\s+/g, '').toLowerCase();
-//   console.log(newCharacter);
-     db.push(newNote)
-//   characters.push(newCharacter);
-  res.json(db);
+  res.json(newNote.id);
 });
 
 // Starts the server to begin listening

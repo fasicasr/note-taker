@@ -4,7 +4,7 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === "/notes") {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
@@ -33,6 +33,7 @@ const getNotes = () =>
     },
   });
 
+
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -41,6 +42,7 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+  //console.log('pulling from 38', note)
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -52,7 +54,7 @@ const deleteNote = (id) =>
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
-
+//if there is an active note show on page, if not leave empty 
   if (activeNote.id) {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
@@ -63,12 +65,14 @@ const renderActiveNote = () => {
     noteText.value = '';
   }
 };
-
+//save user inputs to db 
 const handleNoteSave = () => {
+  console.log('hello')
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
+  console.log(newNote)
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -118,9 +122,9 @@ const handleRenderSaveBtn = () => {
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
-    noteList.forEach((el) => (el.innerHTML = ''));
+    noteList.forEach((el) => (el.innerHTML = '')); 
   }
-
+//append notes to ul list-groups as li into notes.html
   let noteListItems = [];
 
   // Returns HTML element with or without a delete button
