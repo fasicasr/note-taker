@@ -19,7 +19,7 @@ app.use(express.static("public"))
 app.use(express.json());
 
 
-// Routes
+// Routes 
 
 // Route that sends the user to local route, saved route(notes) and the db.json file
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html')));

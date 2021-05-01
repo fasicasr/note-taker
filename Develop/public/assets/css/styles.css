@@ -19,7 +19,7 @@ html, body {
   color: #000000;
   width: 100%;
   outline: none;
-  border: none;
+  border: 0px none;
 }
 
 .note-textarea {
@@ -67,4 +67,18 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#fontsize {
+  font-size: 50px
+}
+
+::-webkit-input-placeholder {
+   font-size: 60px!important;
 }
