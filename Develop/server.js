@@ -26,13 +26,12 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/index.html'
 
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'public/notes.html')));
 
-app.get('/api/notes', (req, res) => res.json(db));
+app.get('/api/notes', (req, res) => res.json(db)); 
 
 
 // Sets the post API route - takes in JSON input
 app.post('/api/notes', (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
   const newNote = req.body;
     
    newNote.id = uniqid();
@@ -45,5 +44,4 @@ app.post('/api/notes', (req, res) => {
 });
 
 // Starts the server to begin listening
-
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));

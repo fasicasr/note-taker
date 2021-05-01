@@ -31,7 +31,7 @@ html, body {
 .note-title {
   height: 50px;
   margin-top: 13px;
-  font-size: 8rem!important;
+  font-size: 4rem!important;
 }
 
 .note-title:read-only, .note-textarea:read-only {
@@ -75,6 +75,4 @@ html, body {
   box-shadow: none;
 }
 
-textarea {
-   font-size: 130px!important;
-}
+
