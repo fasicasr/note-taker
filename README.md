@@ -15,14 +15,14 @@ This application allows users to generate and save notes with a title and text. 
 * Insert title
 * Insert Text 
 * Click the save icon at the top right of the page 
-* To view new or old notes, naviage to the left of the screen and click on note of choice. The contents of the note clicked will be displayed to the right of the screen.   
+* To view new or old notes, naviage to the left of the screen and click on note of choice. The contents of the note clicked will be displayed to the right of the page.   
 
 ## Technologies 
 
 * Express.js
 * npm 
 * Heroku 
-* 
+* Node
 
 ## License
 

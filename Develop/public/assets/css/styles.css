@@ -75,4 +75,7 @@ html, body {
   box-shadow: none;
 }
 
+.bg-dark {
+  background-color: #17090d !important;
+}
 

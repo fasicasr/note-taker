@@ -8,8 +8,6 @@ const uniqid = require('uniqid');
 
 //const uniqid = require('uniqid');
 
-// Sets up the Express App
-
 const app = express();
 const PORT = 3000;
 
