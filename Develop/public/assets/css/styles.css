@@ -31,7 +31,7 @@ html, body {
 .note-title {
   height: 50px;
   margin-top: 13px;
-  font-size: 3rem;
+  font-size: 8rem!important;
 }
 
 .note-title:read-only, .note-textarea:read-only {
@@ -75,10 +75,6 @@ html, body {
   box-shadow: none;
 }
 
-#fontsize {
-  font-size: 50px
-}
-
-::-webkit-input-placeholder {
-   font-size: 60px!important;
+textarea {
+   font-size: 130px!important;
 }
